@@ -6,7 +6,7 @@
   "scripts": {
     "node-server": "node ./server.js",
     "dev-server": "webpack-dev-server",
-    "start": "concurrently 'yarn run node-server' 'yarn run webpack-dev-server'",
+    "start": "concurrently 'yarn run node-server' 'yarn run webpack serve'",
     "test": "jest --watchAll"
   },
   "jest": {
