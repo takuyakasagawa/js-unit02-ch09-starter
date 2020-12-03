@@ -1,14 +1,8 @@
 import MailValidator from './MailValidator';
 
 describe('Mail validator', () => {
-  it('妥当な場合は成功を返す', () => {});
-  it('空の場合は失敗を返す', () => {});
-  it('フォーマットが異なる場合は失敗を返す', () => {});
-});
-
-describe('password validator', () => {
   it("妥当な場合は成功を返す", () => {
-    const Mail = "samplePass1";
+    const Mail = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i;
     const validator = new MailValidator(Mail);
     return validator.validate()
       .then((res) => {
@@ -34,7 +28,7 @@ describe('password validator', () => {
     return validator.validate()
       .then((res) => {
         expect(res.success).toBeFalsy();
-        expect(res.message).toBe('フォーマットが異なります。')
+        expect(res.message).toBe(`${this.type}のフォーマットが異なります。`)
       });
   })
 });
