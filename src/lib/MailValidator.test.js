@@ -23,7 +23,7 @@ describe('Mail validator', () => {
   })
 
   it("フォーマットが異なる場合は失敗を返す", () => {
-    const Mail = "test";
+    const Mail = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i;
     const validator = new MailValidator(Mail);
     return validator.validate()
       .then((res) => {
