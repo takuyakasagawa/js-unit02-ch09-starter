@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
 const compiler = webpack(webpackConfig);
 const express = require('express');
+const middleware = require('webpack-dev-middleware');
 
 const app = express();
 app.use(express.json());
@@ -12,8 +13,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(require("webpack-dev-middleware")(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath
+app.use(middleware(compiler, {
+  publicPath: webpackConfig.output.publicPath
 }));
 
 app.use(require("webpack-hot-middleware")(compiler));
